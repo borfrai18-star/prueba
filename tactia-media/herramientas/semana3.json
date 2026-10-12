@@ -1,0 +1,29 @@
+{
+  "tactia-2026-10-19": {
+    "h1": "La IA me ayuda.",
+    "h2": "Pero no decide por mí.",
+    "sub1": "Planifico, reviso y entiendo",
+    "sub2": "cada cambio antes de seguir.",
+    "footer": "TACTIA / BUILD IN PUBLIC",
+    "h_size": 92
+  },
+  "tactia-2026-10-21": {
+    "h1": "3 preguntas antes",
+    "h2": "de tu próximo post.",
+    "steps": [
+      "¿Qué problema de tu cliente resuelve?",
+      "¿Por qué tú y no tu competencia?",
+      "¿Qué quieres que haga quien lo lea?"
+    ],
+    "step_size": 38,
+    "footer": "TACTIA / PARA PYMES"
+  },
+  "tactia-2026-10-23": {
+    "h1": "¿El marketing, para",
+    "h2": "cuando tengas tiempo?",
+    "h_size": 88,
+    "sub1": "Tactia prepara el trabajo.",
+    "sub2": "Tú revisas y decides.",
+    "footer": "TACTIA / BETA"
+  }
+}

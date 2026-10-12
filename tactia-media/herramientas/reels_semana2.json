@@ -1,0 +1,158 @@
+{
+  "reel-2026-10-12": {
+    "footer": "TACTIA / BUILD IN PUBLIC",
+    "scenes": [
+      {
+        "type": "text",
+        "dur": 2.6,
+        "l1": "No sé programar.",
+        "l2": "Y estoy creando Tactia.",
+        "size": 118
+      },
+      {
+        "type": "text",
+        "dur": 2.6,
+        "l1": "Marketing con IA",
+        "l2": "para pymes sin agencia.",
+        "size": 108
+      },
+      {
+        "type": "text",
+        "dur": 2.5,
+        "l1": "Lo construyo con IA,",
+        "l2": "sin escribir código a mano.",
+        "size": 88
+      },
+      {
+        "type": "list",
+        "dur": 2.8,
+        "n": "22",
+        "q": "agentes de IA y un CEO que se reparten el trabajo.",
+        "size": 88
+      },
+      {
+        "type": "text",
+        "dur": 2.4,
+        "l1": "Yo planifico",
+        "l2": "y reviso cada cambio.",
+        "size": 96
+      },
+      {
+        "type": "end",
+        "dur": 3.6,
+        "l1": "Tactia prepara.",
+        "l2": "Tú decides.",
+        "cta": "Sigue el proceso",
+        "handle": "@tactia.es"
+      }
+    ]
+  },
+  "reel-2026-10-14": {
+    "footer": "TACTIA / PARA PYMES",
+    "scenes": [
+      {
+        "type": "text",
+        "dur": 2.4,
+        "l1": "Antes de publicar,",
+        "l2": "contesta esto.",
+        "size": 120
+      },
+      {
+        "type": "list",
+        "dur": 3.2,
+        "n": "1",
+        "q": "¿Qué problema de tu cliente resuelve?",
+        "sub": "Si no cabe en una frase, no está lista."
+      },
+      {
+        "type": "list",
+        "dur": 3.2,
+        "n": "2",
+        "q": "¿Por qué tú y no tu competencia?",
+        "sub": "Si vale para cualquiera, es genérica."
+      },
+      {
+        "type": "list",
+        "dur": 3.2,
+        "n": "3",
+        "q": "¿Qué quieres que haga quien lo lea?",
+        "sub": "Escribirte, guardarlo, ir a tu web…"
+      },
+      {
+        "type": "text",
+        "dur": 2.3,
+        "l1": "Sin estas 3 respuestas,",
+        "l2": "es ruido.",
+        "size": 112
+      },
+      {
+        "type": "end",
+        "dur": 3.4,
+        "l1": "Guárdalo para",
+        "l2": "tu próximo post.",
+        "cta": "Tactia prepara. Tú decides.",
+        "handle": "@tactia.es",
+        "size": 112
+      }
+    ]
+  },
+  "reel-2026-10-16": {
+    "footer": "TACTIA / BETA",
+    "scenes": [
+      {
+        "type": "text",
+        "dur": 2.6,
+        "l1": "Busco 10 pymes",
+        "l2": "para probar Tactia primero.",
+        "size": 112
+      },
+      {
+        "type": "text",
+        "dur": 2.4,
+        "l1": "Analiza a tu competencia",
+        "l2": "con datos reales.",
+        "size": 104
+      },
+      {
+        "type": "text",
+        "dur": 2.2,
+        "l1": "Te dice cómo",
+        "l2": "diferenciarte.",
+        "size": 120
+      },
+      {
+        "type": "text",
+        "dur": 2.4,
+        "l1": "Te prepara posts",
+        "l2": "para Instagram y LinkedIn.",
+        "size": 104
+      },
+      {
+        "type": "text",
+        "dur": 2.0,
+        "l1": "Tú revisas",
+        "l2": "y decides.",
+        "size": 124
+      },
+      {
+        "type": "checks",
+        "dur": 3.8,
+        "title": "Busco negocios:",
+        "items": [
+          "Sin agencia de marketing",
+          "Que quieran publicar con cabeza",
+          "Que me den su opinión sincera"
+        ]
+      },
+      {
+        "type": "end",
+        "dur": 3.4,
+        "l1": "¿Encajas?",
+        "l2": "Escríbenos.",
+        "cta": "Por privado a @tactia.es",
+        "handle": "",
+        "size": 124
+      }
+    ]
+  }
+}
