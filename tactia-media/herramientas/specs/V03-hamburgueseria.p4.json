@@ -1,0 +1,157 @@
+{
+ "name": "V03-hamburgueseria",
+ "out_dir": "entregas4",
+ "end_secs": 3.3,
+ "clip": "/tmp/claude-0/-home-claude-prueba/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/v3/raw.mp4",
+ "chunks": [
+  [
+   0.78,
+   3.75,
+   "Una chica grabó un vídeo sobre la hamburguesería de su padre"
+  ],
+  [
+   4.13,
+   5.96,
+   "y esto le cambió el negocio por completo."
+  ],
+  [
+   6.64,
+   8.71,
+   "Sin una cámara buena detrás, sin una agencia,"
+  ],
+  [
+   9.11,
+   11.35,
+   "simplemente con un teléfono y transmitiendo"
+  ],
+  [
+   11.63,
+   12.69,
+   "un mensaje que era verdad:"
+  ],
+  [
+   13.1,
+   15.48,
+   "el negocio no iba bien y necesitaban ayuda."
+  ],
+  [
+   15.91,
+   17.59,
+   "Según Meganoticias consiguió"
+  ],
+  [
+   17.86,
+   21.76,
+   "más de un millón y medio de visitas y pasó de un Instagram de 800 seguidores"
+  ],
+  [
+   22.11,
+   23.18,
+   "a casi 30.000."
+  ],
+  [
+   23.66,
+   24.83,
+   "Pero esto no es lo que importa."
+  ],
+  [
+   25.33,
+   28.73,
+   "Porque las personas no compartieron un anuncio, compartieron"
+  ],
+  [
+   29.19,
+   30.36,
+   "una historia que era real."
+  ],
+  [
+   30.92,
+   32.53,
+   "Y tu empresa también tiene una."
+  ],
+  [
+   32.72,
+   35.01,
+   "Así que sígueme, que todos los días subo trucos"
+  ],
+  [
+   35.3,
+   36.68,
+   "sobre marketing para tu negocio."
+  ]
+ ],
+ "graphics": [
+  {
+   "t0": 0.78,
+   "t1": 5.96,
+   "kind": "title",
+   "kicker": "Una chica grabó un vídeo",
+   "lines": [
+    "y le cambió",
+    "el negocio 🍔"
+   ]
+  },
+  {
+   "t0": 6.64,
+   "t1": 8.71,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "Sin cámara · Sin agencia",
+   "size": 54
+  },
+  {
+   "t0": 11.63,
+   "t1": 12.69,
+   "kind": "pill",
+   "zone": "top",
+   "color": "yellow",
+   "text": "Un mensaje verdad"
+  },
+  {
+   "t0": 17.86,
+   "t1": 21.5,
+   "kind": "stat",
+   "zone": "low",
+   "y": 1020,
+   "from": 0,
+   "to": 1.5,
+   "dec": 1,
+   "suf": " M",
+   "label": "visitas",
+   "source": "Fuente: Meganoticias",
+   "size": 150,
+   "count": 30
+  },
+  {
+   "t0": 21.6,
+   "t1": 23.3,
+   "kind": "stat",
+   "zone": "low",
+   "y": 1040,
+   "from": 800,
+   "to": 30000,
+   "label": "seguidores",
+   "size": 130,
+   "count": 24
+  },
+  {
+   "t0": 25.33,
+   "t1": 28.73,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "No compartieron un anuncio",
+   "size": 52
+  },
+  {
+   "t0": 29.19,
+   "t1": 30.36,
+   "kind": "pill",
+   "zone": "top",
+   "color": "white",
+   "text": "Una historia real ❤️"
+  }
+ ],
+ "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V03-hamburgueseria"
+}

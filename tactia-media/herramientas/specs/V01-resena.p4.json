@@ -1,0 +1,148 @@
+{
+ "name": "V01-resena",
+ "out_dir": "entregas4",
+ "end_secs": 3.3,
+ "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V01-resena",
+ "clip": "/tmp/claude-0/-home-claude-prueba/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/v1/video1_raw.mp4",
+ "chunks": [
+  [
+   0.84,
+   3.91,
+   "Te acaban de poner una reseña de una estrella y vas a hacer lo peor:"
+  ],
+  [
+   4.28,
+   4.86,
+   "ignorarla."
+  ],
+  [
+   5.23,
+   8.57,
+   "Piensa que esa reseña no solo la lee la persona que te la ha escrito,"
+  ],
+  [
+   8.99,
+   11.75,
+   "sino todas las personas que buscan tu negocio en Google."
+  ],
+  [
+   12.22,
+   14.19,
+   "Y no se van a centrar en la queja en sí,"
+  ],
+  [
+   14.51,
+   15.39,
+   "se van a centrar"
+  ],
+  [
+   15.56,
+   17.39,
+   "en si respondes o no respondes."
+  ],
+  [
+   17.71,
+   19.68,
+   "Lo que tienes que hacer es coger esa queja,"
+  ],
+  [
+   19.97,
+   22.16,
+   "pegársela a ChatGPT y decirle que actúe"
+  ],
+  [
+   22.6,
+   23.4,
+   "como el dueño,"
+  ],
+  [
+   23.66,
+   26.11,
+   "reconocer el fallo y decir que vas a hacer lo que sea"
+  ],
+  [
+   26.45,
+   27.03,
+   "por cambiarlo."
+  ],
+  [
+   27.4,
+   30.91,
+   "Lo ajustas, y en un minuto tienes una queja que antes te espantaba clientes"
+  ],
+  [
+   31.17,
+   32.79,
+   "a algo que te demuestra que sí"
+  ],
+  [
+   32.96,
+   33.55,
+   "te importa."
+  ],
+  [
+   34.12,
+   36.31,
+   "Sígueme, que todos los días subo consejos"
+  ],
+  [
+   36.56,
+   37.54,
+   "para tu negocio de marketing."
+  ]
+ ],
+ "graphics": [
+  {
+   "t0": 0.84,
+   "t1": 4.86,
+   "kind": "title",
+   "kicker": "Te acaban de poner",
+   "lines": [
+    "una reseña de",
+    "1 estrella ★"
+   ]
+  },
+  {
+   "t0": 5.2,
+   "t1": 8.5,
+   "kind": "stars",
+   "zone": "top",
+   "filled": 1
+  },
+  {
+   "t0": 9.0,
+   "t1": 11.7,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "La ven todos en Google"
+  },
+  {
+   "t0": 15.6,
+   "t1": 17.4,
+   "kind": "pill",
+   "zone": "top",
+   "color": "yellow",
+   "text": "¿Has respondido?"
+  },
+  {
+   "t0": 20.0,
+   "t1": 27.0,
+   "kind": "bubble",
+   "zone": "low",
+   "y": 1060,
+   "side": "left",
+   "color": "white",
+   "text": "Actúa como el dueño: reconoce el fallo y di qué vas a cambiar.",
+   "type_frames": 48
+  },
+  {
+   "t0": 27.9,
+   "t1": 30.9,
+   "kind": "pill",
+   "zone": "top",
+   "color": "blue",
+   "text": "1 minuto"
+  }
+ ]
+}

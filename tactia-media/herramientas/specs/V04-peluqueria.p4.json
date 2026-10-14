@@ -1,0 +1,142 @@
+{
+ "name": "V04-peluqueria",
+ "out_dir": "entregas4",
+ "end_secs": 3.3,
+ "clip": "/tmp/claude-0/-home-claude-prueba/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/v6/raw.MOV",
+ "chunks": [
+  [
+   0.66,
+   5.42,
+   "Si tienes una peluquería, tu mejor vídeo dura cinco segundos y lo tienes delante todos los días."
+  ],
+  [
+   5.92,
+   6.93,
+   "No es el corte de pelo."
+  ],
+  [
+   7.19,
+   10.4,
+   "Es la cara de tu cliente al terminar, cuando se mira al espejo."
+  ],
+  [
+   10.83,
+   12.22,
+   "Esa cara no se puede fingir."
+  ],
+  [
+   12.82,
+   15.41,
+   "Así que le pides permiso, lo editas y lo subes."
+  ],
+  [
+   15.92,
+   16.79,
+   "Y lo mejor de todo"
+  ],
+  [
+   17.3,
+   17.66,
+   "es que,"
+  ],
+  [
+   18.61,
+   21.7,
+   "al salir él en el vídeo, lo va a compartir con sus amigos,"
+  ],
+  [
+   21.99,
+   24.28,
+   "y tus próximos clientes podrían ser sus amigos."
+  ],
+  [
+   24.69,
+   27.37,
+   "Así que la peluquería de enfrente te puede copiar los precios,"
+  ],
+  [
+   27.83,
+   29.58,
+   "pero no te puede copiar esas caras."
+  ],
+  [
+   29.89,
+   33.12,
+   "Así que sígueme, que todos los días subo trucos de marketing para tu negocio."
+  ]
+ ],
+ "graphics": [
+  {
+   "t0": 0.66,
+   "t1": 5.42,
+   "kind": "title",
+   "kicker": "Si tienes una peluquería",
+   "lines": [
+    "tu mejor vídeo",
+    "dura 5 segundos ✂️"
+   ]
+  },
+  {
+   "t0": 5.92,
+   "t1": 6.93,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "No es el corte"
+  },
+  {
+   "t0": 10.83,
+   "t1": 12.22,
+   "kind": "pill",
+   "zone": "top",
+   "color": "yellow",
+   "text": "No se puede fingir"
+  },
+  {
+   "t0": 12.82,
+   "t1": 15.41,
+   "kind": "list",
+   "zone": "low",
+   "y": 1020,
+   "items": [
+    "Pides permiso",
+    "Lo editas",
+    "Lo subes"
+   ],
+   "mark": "✓",
+   "mark_bg": "#1F9D55",
+   "first": 4,
+   "step": 20,
+   "size": 56
+  },
+  {
+   "t0": 18.61,
+   "t1": 24.28,
+   "kind": "bubble",
+   "zone": "low",
+   "y": 1060,
+   "side": "left",
+   "color": "white",
+   "text": "Mira cómo me ha quedado 😍",
+   "type_frames": 24
+  },
+  {
+   "t0": 24.69,
+   "t1": 27.37,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "Los precios se copian",
+   "size": 54
+  },
+  {
+   "t0": 27.83,
+   "t1": 29.58,
+   "kind": "pill",
+   "zone": "top",
+   "color": "yellow",
+   "text": "Esas caras, no"
+  }
+ ],
+ "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V04-peluqueria"
+}
