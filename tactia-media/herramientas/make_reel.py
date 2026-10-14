@@ -53,14 +53,19 @@ def timeline_js(scenes, total):
     js = []
     js.append(f'tl.fromTo("#prog", {{scaleX: 0}}, {{scaleX: 1, duration: {total:.2f}, ease: "none"}}, 0);')
     js.append(f'tl.fromTo(".chev-wrap", {{y: 0}}, {{y: -70, duration: {total:.2f}, ease: "none"}}, 0);')
-    js.append('tl.fromTo("#brand", {opacity: 0, y: -16}, {opacity: 1, y: 0, duration: 0.4, ease: "power2.out"}, 0);')
+    # Brand visible from frame 0 (the first frame doubles as the cover in the feed).
     t = 0.0
     for i, s in enumerate(scenes):
         sid = f"#s{i}"
         d = s["dur"]
-        js.append(f'tl.fromTo("{sid}", {{x: 90, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.32, ease: "power3.out"}}, {t + 0.0:.2f});')
-        js.append(f'tl.fromTo("{sid} .num", {{scale: 0.6, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)"}}, {t + 0.02:.2f});')
-        js.append(f'tl.fromTo("{sid} .w", {{y: 70, opacity: 0}}, {{y: 0, opacity: 1, duration: 0.42, ease: "power3.out", stagger: 0.055}}, {t + 0.06:.2f});')
+        if i == 0:
+            # Hook visible from the very first frame: viewers decide in <1 s.
+            # Only a subtle zoom-out, no reveal delay.
+            js.append(f'tl.fromTo("{sid} .hl, {sid} .q", {{scale: 1.07}}, {{scale: 1, duration: 0.9, ease: "power2.out", transformOrigin: "left top"}}, 0);')
+        else:
+            js.append(f'tl.fromTo("{sid}", {{x: 90, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.32, ease: "power3.out"}}, {t + 0.0:.2f});')
+            js.append(f'tl.fromTo("{sid} .num", {{scale: 0.6, opacity: 0}}, {{scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)"}}, {t + 0.02:.2f});')
+            js.append(f'tl.fromTo("{sid} .w", {{y: 70, opacity: 0}}, {{y: 0, opacity: 1, duration: 0.42, ease: "power3.out", stagger: 0.055}}, {t + 0.06:.2f});')
         js.append(f'tl.fromTo("{sid} .bar", {{scaleX: 0}}, {{scaleX: 1, duration: 0.4, ease: "power2.out"}}, {t + 0.45:.2f});')
         js.append(f'tl.fromTo("{sid} .sub", {{y: 24, opacity: 0}}, {{y: 0, opacity: 1, duration: 0.4, ease: "power2.out"}}, {t + 0.6:.2f});')
         js.append(f'tl.fromTo("{sid} .ck", {{x: 40, opacity: 0}}, {{x: 0, opacity: 1, duration: 0.35, ease: "power2.out", stagger: 0.28}}, {t + 0.6:.2f});')

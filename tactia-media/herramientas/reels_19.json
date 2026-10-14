@@ -1,0 +1,13 @@
+{
+  "reel-2026-10-19": {
+    "footer": "TACTIA / BUILD IN PUBLIC",
+    "scenes": [
+      {"type": "text", "dur": 2.6, "l1": "La IA me ayuda.", "l2": "Pero no decide por mí.", "size": 116},
+      {"type": "list", "dur": 2.6, "n": "1", "q": "Planifico cada paso antes de tocar nada.", "size": 90},
+      {"type": "list", "dur": 2.6, "n": "2", "q": "Reviso cada cambio antes de darlo por bueno.", "size": 90},
+      {"type": "list", "dur": 2.8, "n": "3", "q": "Si algo falla, lo entiendo antes de seguir.", "size": 90},
+      {"type": "text", "dur": 2.6, "l1": "La IA acelera.", "l2": "Yo respondo del resultado.", "size": 104},
+      {"type": "end", "dur": 3.4, "l1": "Tactia prepara.", "l2": "Tú decides.", "cta": "Sigue el proceso", "handle": "@tactia.es"}
+    ]
+  }
+}
