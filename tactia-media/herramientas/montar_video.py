@@ -150,6 +150,8 @@ def main(spec_path):
     spec_path = pathlib.Path(spec_path)
     spec = json.loads(spec_path.read_text())
     root = spec_path.parent
+    if "videos" in spec:
+        return main_completos(spec, root)
     if "clips" in spec:
         clips = [root / c for c in spec["clips"]]
     else:
@@ -194,6 +196,32 @@ def main(spec_path):
             ov.append((png["end"], hook_d + body_d, end_t0))
         out = out_dir / f"{spec['id']}-g{g + 1}.mp4"
         assemble(parts, ov, out)
+        print("ok", out, f"{probe(out)['dur']:.1f}s")
+
+
+def main_completos(spec, root):
+    """Modo vídeo completo: Borja graba cada vídeo entero (gancho + cuerpo + final) en un solo clip.
+    spec: {"id": "S1", "out_dir": "out", "hook_secs": 3.0, "end_secs": 4.0,
+           "videos": [{"name": "V01", "clip": "IMG_0001.MOV", "hook_text": "...", "body_texts": ["...", "..."]}, ...]}
+    """
+    out_dir = root / spec.get("out_dir", "out"); out_dir.mkdir(parents=True, exist_ok=True)
+    (BASE / "tmp-montaje").mkdir(exist_ok=True)
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix=f"{spec.get('id', 'videos')}-", dir=BASE / "tmp-montaje"))
+    hook_s, end_s = float(spec.get("hook_secs", 3.0)), float(spec.get("end_secs", 4.0))
+    for k, v in enumerate(spec["videos"]):
+        n = tmp / f"c{k}.mp4"; dur = normalize(root / v["clip"], n, tmp)
+        cards = [(f"h{k}", "hook", v["hook_text"]), (f"e{k}", "end", "")]
+        pts = v.get("body_texts", [])
+        cards += [(f"p{k}_{i}", "point", t) for i, t in enumerate(pts)]
+        png = render_cards(cards, tmp)
+        h = min(hook_s, dur * 0.3); e0 = max(h, dur - end_s)
+        ov = [(png[f"h{k}"], 0, h)]
+        if pts and e0 - h > 1:
+            step = (e0 - h) / len(pts)
+            ov += [(png[f"p{k}_{i}"], h + i * step + 0.15, h + (i + 1) * step - 0.1) for i in range(len(pts))]
+        ov.append((png[f"e{k}"], e0, dur))
+        out = out_dir / f"{v['name']}.mp4"
+        assemble([n], ov, out)
         print("ok", out, f"{probe(out)['dur']:.1f}s")
 
 
