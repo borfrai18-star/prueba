@@ -1,0 +1,13 @@
+{
+  "name": "carrusel-2026-10-17",
+  "footer": "TACTIA / PARA PYMES",
+  "slides": [
+    {"type": "cover", "h1": "Antes de entrar,", "h2": "tu cliente ya te ha mirado.", "sub": "5 cosas que revisa en el móvil (y cómo dejarlas bien).", "size": 104},
+    {"type": "item", "n": "1", "title": "Tus reseñas de Google", "body": "Mira las últimas, no solo la media. Y responde a todas, también a las malas."},
+    {"type": "item", "n": "2", "title": "Tus fotos", "body": "Reales y recientes: el local, el producto y quién atiende."},
+    {"type": "item", "n": "3", "title": "Tu horario", "body": "Si está mal, pierdes la visita. Revísalo en Google y en Instagram."},
+    {"type": "item", "n": "4", "title": "Tu última publicación", "body": "Si es de hace meses, parece que has cerrado. Algo sencillo esta semana vale."},
+    {"type": "item", "n": "5", "title": "Cómo reservar o llegar", "body": "Teléfono, WhatsApp o enlace a la vista. Que no tenga que buscarlo."},
+    {"type": "end", "h1": "Guárdalo", "h2": "y revísalo hoy.", "sub": "Tactia prepara. Tú decides.", "size": 120}
+  ]
+}

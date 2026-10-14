@@ -1,0 +1,24 @@
+{
+  "reel-2026-10-15": {
+    "footer": "TACTIA / COPIA A LOS GRANDES",
+    "scenes": [
+      {"type": "text", "dur": 2.8, "l1": "Starbucks escribe tu nombre", "l2": "en el vaso. Cópialo.", "size": 100},
+      {"type": "text", "dur": 2.5, "l1": "No es por el café.", "l2": "Es porque te reconocen.", "size": 108},
+      {"type": "list", "dur": 3.0, "n": "1", "q": "Apunta el nombre de tus clientes habituales.", "sub": "Y lo que suelen pedir.", "size": 86},
+      {"type": "list", "dur": 3.0, "n": "2", "q": "Salúdales por su nombre la próxima vez.", "sub": "Es gratis y se recuerda.", "size": 86},
+      {"type": "list", "dur": 3.0, "n": "3", "q": "Añade un detalle escrito a mano.", "sub": "En el ticket, la bolsa o el pedido.", "size": 86},
+      {"type": "end", "dur": 3.4, "l1": "Copia a los grandes.", "l2": "Sin su presupuesto.", "cta": "Parte 1 · Síguenos", "handle": "@tactia.es", "size": 108}
+    ]
+  },
+  "reel-2026-10-18": {
+    "footer": "TACTIA / COPIA A LOS GRANDES",
+    "scenes": [
+      {"type": "text", "dur": 2.8, "l1": "«Porque viste esto…»", "l2": "Netflix lo hace. Tú también.", "size": 100},
+      {"type": "text", "dur": 2.6, "l1": "Recomendar según lo que ya compraron", "l2": "vende sin parecer que vendes.", "size": 88},
+      {"type": "list", "dur": 3.0, "n": "1", "q": "Fíjate en lo que compra cada cliente.", "sub": "Aunque sea en una libreta.", "size": 86},
+      {"type": "list", "dur": 3.0, "n": "2", "q": "Recomiéndale una sola cosa que encaje.", "sub": "«Si te gustó esto, prueba aquello.»", "size": 86},
+      {"type": "list", "dur": 3.0, "n": "3", "q": "Díselo en persona, en corto y sin presión.", "sub": "Una recomendación, no un catálogo.", "size": 86},
+      {"type": "end", "dur": 3.4, "l1": "Copia a los grandes.", "l2": "Sin su presupuesto.", "cta": "Parte 2 · Síguenos", "handle": "@tactia.es", "size": 108}
+    ]
+  }
+}
