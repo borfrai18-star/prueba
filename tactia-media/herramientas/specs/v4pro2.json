@@ -1,0 +1,167 @@
+{
+ "name": "V05-chatgpt-datos",
+ "out_dir": "entregas2",
+ "end_secs": 3.3,
+ "clip": "/tmp/claude-0/-home-claude-prueba/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/v4/raw.mp4",
+ "chunks": [
+  [
+   0.58,
+   3.32,
+   "Si usas ChatGPT para tu negocio, nunca pegues esto:"
+  ],
+  [
+   3.47,
+   4.9,
+   "los datos de tus clientes."
+  ],
+  [
+   5.39,
+   9.17,
+   "Nombre, número de teléfono o direcciones, y sobre todo las contraseñas."
+  ],
+  [
+   9.7,
+   11.57,
+   "Piensa que estos datos no son tuyos"
+  ],
+  [
+   11.99,
+   13.21,
+   "y se pueden quedar guardados."
+  ],
+  [
+   13.63,
+   15.32,
+   "Si necesitas ayuda con casos reales,"
+  ],
+  [
+   15.66,
+   17.33,
+   "puedes cambiarle el nombre a tu cliente por"
+  ],
+  [
+   17.54,
+   19.26,
+   "«cliente A» y quitar el número de teléfono,"
+  ],
+  [
+   19.78,
+   20.92,
+   "que las respuestas van a ser"
+  ],
+  [
+   21.08,
+   21.84,
+   "igual de buenas."
+  ],
+  [
+   22.26,
+   23.86,
+   "También te puedes ir a Ajustes,"
+  ],
+  [
+   24.2,
+   25.09,
+   "Controles de datos,"
+  ],
+  [
+   25.38,
+   28.2,
+   "y desactivas la opción de «Mejorar el modelo para todos»."
+  ],
+  [
+   28.76,
+   29.69,
+   "Esto lo que hace"
+  ],
+  [
+   29.97,
+   32.7,
+   "es que tus ejemplos dejan de entrenar la inteligencia artificial."
+  ],
+  [
+   33.16,
+   34.88,
+   "Dos clics y te quitas un disgusto."
+  ],
+  [
+   35.39,
+   39.0,
+   "Todos los días subo trucos así, y si quieres una inteligencia artificial"
+  ],
+  [
+   39.45,
+   42.93,
+   "que ayude a tu negocio, apúntate a Tactia: el enlace está en mi perfil."
+  ]
+ ],
+ "graphics": [
+  {
+   "t0": 0.58,
+   "t1": 3.32,
+   "kind": "title",
+   "kicker": "Si usas ChatGPT en tu negocio",
+   "lines": [
+    "NUNCA",
+    "pegues esto 🚫"
+   ]
+  },
+  {
+   "t0": 5.25,
+   "t1": 9.4,
+   "kind": "list",
+   "zone": "low",
+   "y": 1000,
+   "title": "Datos de tus clientes",
+   "items": [
+    "Nombres",
+    "Teléfonos",
+    "Direcciones",
+    "Contraseñas"
+   ],
+   "first": 6,
+   "step": 28,
+   "size": 56
+  },
+  {
+   "t0": 9.7,
+   "t1": 13.2,
+   "kind": "pill",
+   "zone": "top",
+   "color": "navy",
+   "text": "No son tuyos · Se guardan",
+   "size": 52
+  },
+  {
+   "t0": 15.66,
+   "t1": 21.84,
+   "kind": "bubble",
+   "zone": "low",
+   "y": 1060,
+   "side": "left",
+   "color": "white",
+   "text": "El cliente A pidió presupuesto y no contesta. ¿Cómo le escribo?",
+   "type_frames": 60,
+   "size": 54
+  },
+  {
+   "t0": 22.26,
+   "t1": 32.7,
+   "kind": "toggle",
+   "zone": "low",
+   "y": 1000,
+   "title": "Ajustes › Controles de datos",
+   "text": "Mejorar el modelo para todos",
+   "off_t": 25.6
+  },
+  {
+   "t0": 33.16,
+   "t1": 34.88,
+   "kind": "pill",
+   "zone": "top",
+   "color": "yellow",
+   "text": "2 clics"
+  }
+ ],
+ "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/V05-chatgpt-datos-btqndnri"
+}
