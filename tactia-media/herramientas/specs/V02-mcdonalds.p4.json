@@ -93,14 +93,6 @@
    ]
   },
   {
-   "t0": 3.8,
-   "t1": 7.7,
-   "kind": "pill",
-   "zone": "top",
-   "color": "yellow",
-   "text": "4 palabras"
-  },
-  {
    "t0": 21.9,
    "t1": 26.3,
    "kind": "bubble",
@@ -136,12 +128,29 @@
    "count": 18
   },
   {
-   "t0": 35.0,
-   "t1": 35.9,
-   "kind": "pill",
-   "zone": "top",
-   "color": "blue",
-   "text": "Una pregunta"
+   "t0": 3.73,
+   "t1": 5.3,
+   "kind": "impact",
+   "text": "*4 PALABRAS*"
+  },
+  {
+   "t0": 14.84,
+   "t1": 17.16,
+   "kind": "impact",
+   "text": "Modo *SÍ* ✅"
+  },
+  {
+   "t0": 26.81,
+   "t1": 28.6,
+   "kind": "impact",
+   "text": "No todos dirán *SÍ*",
+   "size": 110
+  },
+  {
+   "t0": 33.93,
+   "t1": 35.81,
+   "kind": "impact",
+   "text": "Por *UNA*|pregunta"
   }
  ]
 }

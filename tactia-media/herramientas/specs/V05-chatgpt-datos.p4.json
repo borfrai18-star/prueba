@@ -124,15 +124,6 @@
    "size": 56
   },
   {
-   "t0": 9.7,
-   "t1": 13.2,
-   "kind": "pill",
-   "zone": "top",
-   "color": "navy",
-   "text": "No son tuyos · Se guardan",
-   "size": 52
-  },
-  {
    "t0": 15.66,
    "t1": 21.84,
    "kind": "bubble",
@@ -155,12 +146,23 @@
    "off_t": 25.6
   },
   {
+   "t0": 9.7,
+   "t1": 11.57,
+   "kind": "impact",
+   "text": "*NO* son tuyos"
+  },
+  {
+   "t0": 11.99,
+   "t1": 13.21,
+   "kind": "impact",
+   "text": "Se quedan|*GUARDADOS*",
+   "size": 112
+  },
+  {
    "t0": 33.16,
    "t1": 34.88,
-   "kind": "pill",
-   "zone": "top",
-   "color": "yellow",
-   "text": "2 clics"
+   "kind": "impact",
+   "text": "*2 CLICS* ✅"
   }
  ],
  "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V05-chatgpt-datos"

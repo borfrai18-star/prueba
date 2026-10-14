@@ -75,6 +75,7 @@ function setFrame(i){
   let tr='', s=1, op=1;
   if(c.kind==='pill'){ s=EB(p); const ty=(1-EC(p))*-160; tr=`translateY(${ty}px) scale(${s*(1-0.1*EI(q))})`; op=Math.min(1,p*2)*(1-EI(q)); }
   else if(c.kind==='end'){ const ty=(1-EC(p))*260; tr=`translateY(${ty}px)`; op=Math.min(1,p*1.6); }
+  else if(c.kind==='impact'){ s=EB(p); const rot=(1-EC(p))*-7; tr=`translateY(${(1-EC(p))*40}px) rotate(${rot}deg) scale(${s*(1-0.1*EI(q))})`; op=Math.min(1,p*3)*(1-EI(q)); }
   else { s=EB(p); const rot=(1-EC(p))*-4; tr=`translateY(${(1-EC(p))*70}px) rotate(${rot}deg) scale(${s*(1-0.12*EI(q))})`; op=Math.min(1,p*2)*(1-EI(q)); }
   g.style.transform=tr; g.style.opacity=op;
   if(c.kind==='stat'){ const pp=EC(Math.min(1,i/(nin+c.count||1))); const v=c.from+(c.to-c.from)*pp; document.getElementById('num').textContent=c.pre+fmtES(c.dec?Math.round(v*Math.pow(10,c.dec))/Math.pow(10,c.dec):Math.round(v),c.dec||0)+c.suf; }
@@ -140,6 +141,25 @@ def gfx_html(g):
                  f'<div id="track" style="width:160px;height:84px;border-radius:999px;background:#34C759;position:relative;flex:none;transition:none">'
                  f'<div id="knob" style="position:absolute;top:6px;left:6px;width:72px;height:72px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.25);transform:translateX(76px)"></div></div></div>'
                  f'<div id="state" style="margin-top:14px;font-weight:800;font-size:40px;color:#1F9D55">Activado</div></div>')
+    elif kind == "impact":
+        # texto grande de impacto; las palabras entre *asteriscos* van marcadas en amarillo
+        import re as _re
+        size = g.get("size", 124)
+        lines_html = []
+        for ln in g["text"].split("|"):
+            parts = _re.split(r"(\*[^*]+\*)", ln)
+            h = ""
+            for part in parts:
+                if part.startswith("*") and part.endswith("*"):
+                    h += (f'<span style="background:{YELLOW};color:{NAVY};padding:0 22px;border-radius:18px;'
+                          f'-webkit-text-stroke:0;box-decoration-break:clone">{e(part[1:-1])}</span>')
+                else:
+                    h += e(part)
+            lines_html.append(h)
+        inner = (f'<div style="text-align:center;padding:0 40px;font-weight:800;font-size:{size}px;line-height:1.08;'
+                 f'letter-spacing:-0.045em;color:#fff;paint-order:stroke fill;-webkit-text-stroke:16px {NAVY};'
+                 f'text-shadow:0 18px 40px rgba(14,21,48,.45)">' + "<br>".join(lines_html) + '</div>')
+        top = g.get("y", 1020)
     elif kind == "end":
         inner = (f'<div style="position:absolute;left:0;right:0;bottom:0;height:720px;'
                  f'background:linear-gradient(to bottom, rgba(247,249,252,0) 0, {BG} 200px)"></div>'

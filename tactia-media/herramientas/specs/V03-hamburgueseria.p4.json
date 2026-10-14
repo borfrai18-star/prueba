@@ -92,23 +92,6 @@
    ]
   },
   {
-   "t0": 6.64,
-   "t1": 8.71,
-   "kind": "pill",
-   "zone": "top",
-   "color": "navy",
-   "text": "Sin cámara · Sin agencia",
-   "size": 54
-  },
-  {
-   "t0": 11.63,
-   "t1": 12.69,
-   "kind": "pill",
-   "zone": "top",
-   "color": "yellow",
-   "text": "Un mensaje verdad"
-  },
-  {
    "t0": 17.86,
    "t1": 21.5,
    "kind": "stat",
@@ -136,21 +119,44 @@
    "count": 24
   },
   {
+   "t0": 6.64,
+   "t1": 8.71,
+   "kind": "impact",
+   "text": "Sin cámara.|*SIN AGENCIA*",
+   "size": 112
+  },
+  {
+   "t0": 11.63,
+   "t1": 12.69,
+   "kind": "impact",
+   "text": "Un mensaje|*VERDAD*"
+  },
+  {
+   "t0": 23.66,
+   "t1": 24.83,
+   "kind": "impact",
+   "text": "Esto *NO* es|lo que importa",
+   "size": 104
+  },
+  {
    "t0": 25.33,
    "t1": 28.73,
-   "kind": "pill",
-   "zone": "top",
-   "color": "navy",
-   "text": "No compartieron un anuncio",
-   "size": 52
+   "kind": "impact",
+   "text": "No era|*UN ANUNCIO*",
+   "size": 112
   },
   {
    "t0": 29.19,
    "t1": 30.36,
-   "kind": "pill",
-   "zone": "top",
-   "color": "white",
-   "text": "Una historia real ❤️"
+   "kind": "impact",
+   "text": "Una historia|*REAL* ❤️"
+  },
+  {
+   "t0": 30.92,
+   "t1": 32.53,
+   "kind": "impact",
+   "text": "*TÚ* también|tienes una",
+   "size": 112
   }
  ],
  "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V03-hamburgueseria"

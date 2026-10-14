@@ -77,22 +77,6 @@
    ]
   },
   {
-   "t0": 5.92,
-   "t1": 6.93,
-   "kind": "pill",
-   "zone": "top",
-   "color": "navy",
-   "text": "No es el corte"
-  },
-  {
-   "t0": 10.83,
-   "t1": 12.22,
-   "kind": "pill",
-   "zone": "top",
-   "color": "yellow",
-   "text": "No se puede fingir"
-  },
-  {
    "t0": 12.82,
    "t1": 15.41,
    "kind": "list",
@@ -121,21 +105,30 @@
    "type_frames": 24
   },
   {
+   "t0": 5.92,
+   "t1": 6.93,
+   "kind": "impact",
+   "text": "*NO* es el corte"
+  },
+  {
+   "t0": 10.83,
+   "t1": 12.22,
+   "kind": "impact",
+   "text": "No se puede|*FINGIR*",
+   "size": 112
+  },
+  {
    "t0": 24.69,
    "t1": 27.37,
-   "kind": "pill",
-   "zone": "top",
-   "color": "navy",
-   "text": "Los precios se copian",
-   "size": 54
+   "kind": "impact",
+   "text": "Los precios|*SE COPIAN*",
+   "size": 112
   },
   {
    "t0": 27.83,
    "t1": 29.58,
-   "kind": "pill",
-   "zone": "top",
-   "color": "yellow",
-   "text": "Esas caras, no"
+   "kind": "impact",
+   "text": "Esas caras,|*NO*"
   }
  ],
  "tmp": "/tmp/claude-0/-home-claude/525bccc8-35d3-5b6f-8319-82616d2fa7ed/scratchpad/media/tmp-montaje/p4-V04-peluqueria"

@@ -69,7 +69,9 @@ def main(spec_path):
     segs = segments_from_chunks(chunks, spec.get("cut_pause", 0.3), spec.get("keep_pause", 0.1), spec.get("min_seg", 1.3))
     segs = split_long([(a, min(b, dur)) for a, b in segs], spec.get("max_seg", 3.4))
     n = len(segs)
-    kinds = [TR.CYCLE[k % len(TR.CYCLE)] for k in range(n - 1)]
+    cycle = ["cut", "cut", "whipleft", "cut", "cut", "cut", "zoomblur", "cut", "cut", "flash", "cut", "cut", "whipright",
+             "cut", "cut", "cut", "shake", "cut", "cut", "whipup"]
+    kinds = [cycle[k % len(cycle)] for k in range(n - 1)]
     print("trozos:", [(round(a, 2), round(b, 2)) for a, b in segs])
     print("transiciones:", kinds, flush=True)
 
@@ -120,13 +122,13 @@ def main(spec_path):
         g["o0"], g["o1"] = to_out(g["t0"]), to_out(g["t1"])
     gfx.append({"kind": "end", "zone": "none", "o0": end_t0, "o1": total + 0.5})
     low_zones = [(g["o0"], g["o1"]) for g in gfx if g.get("zone") == "low"]
-    hide_zones = [(g["o0"], g["o1"]) for g in gfx if g["kind"] == "title"]
+    hide_zones = [(g["o0"], g["o1"]) for g in gfx if g["kind"] in ("title", "impact")]
     with sync_playwright() as pw:
         b = pw.chromium.launch(); pg = b.new_page(viewport={"width": W, "height": HGT})
         for j, g in enumerate(gfx):
             tot = max(8, int(round((g["o1"] - g["o0"]) * FPS)))
-            nin = 12 if g["kind"] != "end" else 14
-            nout = 0 if g["kind"] == "end" else min(8, tot // 4)
+            nin = {"end": 14, "impact": 7}.get(g["kind"], 12)
+            nout = 0 if g["kind"] == "end" else min(5 if g["kind"] == "impact" else 8, tot // 4)
             if g["kind"] == "toggle" and "off_t" in g:
                 g["off_at"] = int(round((to_out(g["off_t"]) - g["o0"]) * FPS))
             dd = tmp / f"gfx{j}"
