@@ -59,13 +59,15 @@ def speech_bounds(path, dur):
     return a, b
 
 
-def normalize(src, dst, tmp):
+def normalize(src, dst, tmp, hflip=False):
     info = probe(src)
     a, b = speech_bounds(src, info["dur"]) if info["has_audio"] else (0.0, info["dur"])
     vf = []
     if info["trc"] in ("arib-std-b67", "smpte2084"):
         vf.append("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,"
                   "zscale=t=bt709:m=bt709:r=tv")
+    if hflip:
+        vf.append("hflip")
     vf += [f"scale={W}:{HGT}:force_original_aspect_ratio=increase", f"crop={W}:{HGT}", f"fps={FPS}",
            "format=yuv420p", "setsar=1"]
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{a:.3f}", "-to", f"{b:.3f}", "-i", str(src)]
@@ -209,7 +211,7 @@ def main_completos(spec, root):
     tmp = pathlib.Path(tempfile.mkdtemp(prefix=f"{spec.get('id', 'videos')}-", dir=BASE / "tmp-montaje"))
     hook_s, end_s = float(spec.get("hook_secs", 3.0)), float(spec.get("end_secs", 4.0))
     for k, v in enumerate(spec["videos"]):
-        n = tmp / f"c{k}.mp4"; dur = normalize(root / v["clip"], n, tmp)
+        n = tmp / f"c{k}.mp4"; dur = normalize(root / v["clip"], n, tmp, hflip=bool(v.get("hflip", spec.get("hflip", False))))
         cards = [(f"h{k}", "hook", v["hook_text"]), (f"e{k}", "end", "")]
         pts = v.get("body_texts", [])
         cards += [(f"p{k}_{i}", "point", t) for i, t in enumerate(pts)]
