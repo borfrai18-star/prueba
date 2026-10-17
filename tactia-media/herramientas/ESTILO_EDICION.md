@@ -19,6 +19,12 @@ Borja: «voy a empezar a hacer esto». Este es el estilo que manda a partir de a
 
 Para conseguirlo, Borja tiene que grabar por cada vídeo: la toma principal y entre 5 y 8 planos recurso de 3-5 s que ilustren el guion.
 
+## Regla fija (17 oct, Borja)
+- **Borja solo sale en pantalla cuando mira a cámara.** Todo lo que viene de las grabaciones leídas («Guion N – voz») va SIEMPRE tapado con pantallas completas (palabra a palabra en blanco / verde azulado, o gráficos del paso). Nunca se le ve leyendo.
+- También dentro de las tomas a cámara: cada momento en que no mira al objetivo (detector de mirada `gaze.py` + revisión a ojo, `spec_util.away`) se tapa igual.
+- Nunca solo texto: las pantallas llevan objetos 3D (Fluent Emoji 3D, licencia MIT) que flotan; fotos reales solo si Borja las manda.
+- Herramienta: `gallo.py` con `e.voice = {"clave de la grabación leída"}`: rellena automáticamente cualquier hueco sin pantalla.
+
 ## Lo que hacen las referencias anteriores (Solazzo y @only.three3) (observado fotograma a fotograma)
 
 **Subtítulos cinéticos (lo más característico)**
