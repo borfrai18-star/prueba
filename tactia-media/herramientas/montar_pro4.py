@@ -66,7 +66,7 @@ def main(spec_path):
     dur = probe(norm)["dur"]
 
     chunks = [(float(a), float(b), t) for a, b, t in spec["chunks"]]
-    segs = segments_from_chunks(chunks, spec.get("cut_pause", 0.3), spec.get("keep_pause", 0.1), spec.get("min_seg", 1.3))
+    segs = segments_from_chunks(chunks, spec.get("cut_pause", 0.45), spec.get("keep_pause", 0.16), spec.get("min_seg", 1.3))
     segs = split_long([(a, min(b, dur)) for a, b in segs], spec.get("max_seg", 3.4))
     n = len(segs)
     cycle = ["cut", "cut", "whipleft", "cut", "cut", "cut", "zoomblur", "cut", "cut", "flash", "cut", "cut", "whipright",
@@ -157,7 +157,8 @@ def main(spec_path):
         e0 = seg_frames[k] - (cut[k][0] if k < n - 1 else 0)
         fc += f"[{k}:v]trim=start_frame={s0}:end_frame={e0},setpts=PTS-STARTPTS,settb=AVTB,format=yuv420p[v{k}];"
         d = seg_frames[k] / FPS
-        fc += f"[{k}:a]atrim=0:{d:.4f},asetpts=PTS-STARTPTS,apad=whole_dur={d:.4f}[a{k}];"
+        fc += (f"[{k}:a]atrim=0:{d:.4f},asetpts=PTS-STARTPTS,apad=whole_dur={d:.4f},"
+               f"afade=t=in:st=0:d=0.012,afade=t=out:st={max(0.0, d - 0.03):.4f}:d=0.03[a{k}];")  # sin chasquidos en los cortes
         vparts.append(f"[v{k}]"); aparts.append(f"[a{k}]")
         if k < n - 1 and k in tr_idx:
             fc += f"[{tr_idx[k]}:v]settb=AVTB,format=yuv420p[t{k}];"
