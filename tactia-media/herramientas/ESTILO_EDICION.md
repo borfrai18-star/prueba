@@ -19,10 +19,19 @@ Borja: «voy a empezar a hacer esto». Este es el estilo que manda a partir de a
 
 Para conseguirlo, Borja tiene que grabar por cada vídeo: la toma principal y entre 5 y 8 planos recurso de 3-5 s que ilustren el guion.
 
+## ESTILO APROBADO (18 oct, Borja: «ese es los vídeos que yo quiero que hagas con todo… es la hostia») · Espía v4
+- **Imagen a cámara**: su fondo tal cual (nada de luz azul ni oscurecer el fondo); sobre él, luz algo más cálida (`e.style = "warm"`: máscara de la persona, balance cálido suave, viñeta ligera, grano fino).
+- **Sin fotos de banco ni iconos sueltos ni destellos** (`e.clean = True`).
+- **Subtítulos** pequeños, una palabra cada vez, crema; la palabra clave en cursiva serif amarilla (`e.capstyle = "gallo"`).
+- **Gancho**: frase apilada palabra a palabra sobre él, sin franja oscura (`scrim=False`), tamaños 64 / 104 / 128.
+- **Partes leídas → escenas animadas de Remotion** (`remotion/tactia-video`, composición `Step` y escenas propias): título que entra palabra a palabra sincronizado con la voz + un elemento animado (móvil genérico con chat, lista que se tacha, comparativa, barras, contador, calendario, ticket, story…). Paleta oscura con brillo verde azulado/ámbar, Inter Tight + Instrument Serif. Nunca logos de marcas.
+- Herramienta: `e.scene("Step", clave, desde, hasta, kicker=..., title=[[...]], widget={...})` con tiempos de origen (`e.S(clave, "palabra")`); `gallo.py` renderiza las escenas (render.mjs) y las monta como clips.
+- Pantallas de palabras blanco / verde azulado de 0,5-2 s solo para frases cortas («de manera gratuita», «¿Cómo copiarlo?»).
+
 ## Regla fija (17 oct, Borja)
 - **Borja solo sale en pantalla cuando mira a cámara.** Todo lo que viene de las grabaciones leídas («Guion N – voz») va SIEMPRE tapado con pantallas completas (palabra a palabra en blanco / verde azulado, o gráficos del paso). Nunca se le ve leyendo.
 - También dentro de las tomas a cámara: cada momento en que no mira al objetivo (detector de mirada `gaze.py` + revisión a ojo, `spec_util.away`) se tapa igual.
-- Nunca solo texto: las pantallas llevan objetos 3D (Fluent Emoji 3D, licencia MIT) que flotan; fotos reales solo si Borja las manda.
+- Nunca solo texto: las partes leídas van con escenas animadas (ver «Estilo aprobado»); objetos 3D (Fluent Emoji 3D, licencia MIT) solo dentro de esas escenas; fotos reales solo si Borja las manda.
 - Herramienta: `gallo.py` con `e.voice = {"clave de la grabación leída"}`: rellena automáticamente cualquier hueco sin pantalla.
 
 ## Lo que hacen las referencias anteriores (Solazzo y @only.three3) (observado fotograma a fotograma)
