@@ -27,6 +27,7 @@ Para conseguirlo, Borja tiene que grabar por cada vídeo: la toma principal y en
 - **Partes leídas → escenas animadas de Remotion** (`remotion/tactia-video`, composición `Step` y escenas propias): título que entra palabra a palabra sincronizado con la voz + un elemento animado (móvil genérico con chat, lista que se tacha, comparativa, barras, contador, calendario, ticket, story…). Paleta oscura con brillo verde azulado/ámbar, Inter Tight + Instrument Serif. Nunca logos de marcas.
 - Herramienta: `e.scene("Step", clave, desde, hasta, kicker=..., title=[[...]], widget={...})` con tiempos de origen (`e.S(clave, "palabra")`); `gallo.py` renderiza las escenas (render.mjs) y las monta como clips.
 - Pantallas de palabras blanco / verde azulado de 0,5-2 s solo para frases cortas («de manera gratuita», «¿Cómo copiarlo?»).
+- **Golpe de sonido de entrada (aprobado el 22 oct):** «fiuuu» + golpe suave (efecto propio, `assets/riser.wav`) y zoom al 112 % a los 0,2 s que vuelve al 100 % en 0,4 s. Solo en el primer segundo; después, solo su voz. En `gallo.py` va activado por defecto (`e.intro_sfx = False` para quitarlo).
 
 ## Regla fija (17 oct, Borja)
 - **Borja solo sale en pantalla cuando mira a cámara.** Todo lo que viene de las grabaciones leídas («Guion N – voz») va SIEMPRE tapado con pantallas completas (palabra a palabra en blanco / verde azulado, o gráficos del paso). Nunca se le ve leyendo.
