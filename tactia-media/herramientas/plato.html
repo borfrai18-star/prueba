@@ -1,0 +1,198 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Sans';src:url('fonts/inter-tight-latin-900-normal.woff2') format('woff2');font-weight:900}
+@font-face{font-family:'Sans';src:url('fonts/inter-tight-latin-800-normal.woff2') format('woff2');font-weight:800}
+@font-face{font-family:'Sans';src:url('fonts/inter-tight-latin-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Serif';src:url('fonts/instrument-serif-latin-400-italic.woff2') format('woff2');font-style:italic}
+html,body{margin:0;background:#000}
+#wrap{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:'Sans'}
+canvas#gl{position:absolute;inset:0;width:1080px;height:1350px}
+.lt{position:absolute;left:0;right:0;bottom:62px}
+.tag{display:inline-flex;align-items:center;gap:14px;margin-left:56px;padding:12px 22px;background:#E5252A;color:#fff;font:900 30px Sans;letter-spacing:.14em;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.dot{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff}
+.bar{margin-top:0;padding:22px 56px 26px;background:linear-gradient(90deg,#ffffff,#eef0f3);color:#0b0d12;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+.h{font:900 72px/1.0 Sans;letter-spacing:-.035em}
+.h em{font:italic 400 76px/1 Serif;color:#C8102E;letter-spacing:-.01em}
+.s{font:600 32px/1.25 Sans;color:#30343c;margin-top:12px}
+.tick{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;background:#0b0d12;color:#fff;font:800 24px Sans;letter-spacing:.2em}
+.tick b{height:100%;display:flex;align-items:center;padding:0 28px;background:#F4C542;color:#0b0d12}
+.tick span{padding-left:26px;color:#cfd3da;white-space:nowrap}
+.top{position:absolute;left:56px;top:52px;display:flex;align-items:center;gap:14px;color:#fff;font:800 26px Sans;letter-spacing:.3em;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.live{padding:6px 12px;border:2px solid #E5252A;color:#fff;background:rgba(229,37,42,.25);letter-spacing:.2em}
+</style></head>
+<body><div id="wrap">
+<canvas id="gl" width="1080" height="1350"></canvas>
+<div style="position:absolute;left:0;right:0;top:0;height:220px;background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,0))"></div><div class="top"><span class="live">● EN DIRECTO</span><span>TACTIA NOTICIAS IA</span></div>
+<div class="lt"><div class="tag"><span class="dot"></span><span id="tag">ÚLTIMA HORA</span></div>
+  <div class="bar"><div class="h" id="h"></div><div class="s" id="s"></div></div></div>
+<div class="tick"><b>TACTIA</b><span id="tk">IA ÚTIL PARA TU NEGOCIO · CADA SEMANA, LO QUE IMPORTA DE LA IA</span></div>
+</div>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const P = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+document.getElementById('h').innerHTML = P.h;
+document.getElementById('s').textContent = P.s || '';
+if (P.tag) document.getElementById('tag').textContent = P.tag;
+await document.fonts.ready;
+
+const W = 1080, H = 1350;
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H, false);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.72;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05060a);
+scene.fog = new THREE.Fog(0x05060a, 14, 30);
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; scene.environmentIntensity = 0.22;
+
+const cam = new THREE.PerspectiveCamera(34, W / H, 0.1, 100);
+cam.position.set(1.6, 3.3, 16.2); cam.lookAt(0.25, 3.05, 0); cam.fov = 33; cam.updateProjectionMatrix();
+
+const accent = new THREE.Color(P.glow || '#1E90FF');
+
+// ---------- pantalla LED de fondo ----------
+function ledTexture() {
+  const c = document.createElement('canvas'); c.width = 2048; c.height = 1152; const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0, 0, 2048, 1152); grd.addColorStop(0, P.screen1 || '#0b2a6b'); grd.addColorStop(1, P.screen2 || '#06102a');
+  g.fillStyle = grd; g.fillRect(0, 0, 2048, 1152);
+  // trama de píxeles LED
+  g.globalAlpha = .10; g.fillStyle = '#000'; for (let x = 0; x < 2048; x += 8) g.fillRect(x, 0, 2, 1152); for (let y = 0; y < 1152; y += 8) g.fillRect(0, y, 2048, 2); g.globalAlpha = 1;
+  const draw = SCREENS[P.screen || 'texto']; draw(g, c);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+function big(g, txt, x, y, size, color, align = 'center', font = '900') { g.font = `${font} ${size}px Sans`; g.textAlign = align; g.fillStyle = color; g.fillText(txt, x, y); }
+function serif(g, txt, x, y, size, color, align = 'center') { g.font = `italic 400 ${size}px Serif`; g.textAlign = align; g.fillStyle = color; g.fillText(txt, x, y); }
+function rr(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); }
+const SCREENS = {
+  texto(g) { big(g, P.l1 || '', 1024, 520, 260, '#ffffff'); serif(g, P.l2 || '', 1024, 760, 200, '#F4C542'); },
+  gemini(g) {
+    const grd = g.createLinearGradient(400, 0, 1650, 0); grd.addColorStop(0, '#7ab8ff'); grd.addColorStop(.5, '#c38bff'); grd.addColorStop(1, '#ff9ad5');
+    g.font = '900 330px Sans'; g.textAlign = 'center'; g.fillStyle = grd; g.fillText('GEMINI', 1024, 470);
+    serif(g, 'para tu negocio', 1024, 650, 170, '#F4C542');
+    const cards = [['TU MARCA', '#1E90FF'], ['TUS NÚMEROS', '#16B3A6'], ['TUS CLIENTES', '#F4C542']];
+    cards.forEach(([t, col], i) => { const x = 250 + i * 540; rr(g, x, 780, 470, 230, 34); g.fillStyle = 'rgba(255,255,255,.10)'; g.fill(); g.lineWidth = 6; g.strokeStyle = col; g.stroke();
+      big(g, t, x + 235, 920, 64, '#fff', 'center', '800'); });
+  },
+  versus(g, c) {
+    g.fillStyle = 'rgba(229,37,42,.38)'; g.fillRect(0, 0, 1024, 1152); g.fillStyle = 'rgba(22,179,100,.38)'; g.fillRect(1024, 0, 1024, 1152);
+    big(g, 'AMAZON', 650, 250, 138, '#fff'); big(g, 'WALMART', 1385, 250, 138, '#fff');
+    big(g, 'BLOQUEA', 640, 360, 74, '#ffd0d0', 'center', '800'); big(g, 'ABRE LA PUERTA', 1410, 360, 74, '#d0ffe2', 'center', '800');
+    g.lineWidth = 40; g.lineCap = 'round'; g.strokeStyle = '#ff4d4d'; g.shadowColor = '#ff4d4d'; g.shadowBlur = 30;
+    g.beginPath(); g.moveTo(520, 440); g.lineTo(760, 680); g.moveTo(760, 440); g.lineTo(520, 680); g.stroke();
+    g.strokeStyle = '#3ddc84'; g.shadowColor = '#3ddc84'; g.beginPath(); g.moveTo(1290, 570); g.lineTo(1390, 670); g.lineTo(1560, 460); g.stroke(); g.shadowBlur = 0;
+    g.fillStyle = '#fff'; g.fillRect(1020, 120, 8, 700); rr(g, 944, 470, 160, 160, 80); g.fillStyle = '#0b0d12'; g.fill(); big(g, 'VS', 1024, 580, 84, '#F4C542');
+  },
+  tele(g) {
+    big(g, 'TELE SIN ANUNCIOS', 1024, 190, 120, '#fff');
+    const x0 = 430, y0 = 260; rr(g, x0, y0, 820, 520, 34); g.fillStyle = '#16181f'; g.fill(); rr(g, x0 + 30, y0 + 30, 760, 460, 16); const gg = g.createLinearGradient(x0, y0, x0 + 820, y0 + 520); gg.addColorStop(0, '#13b3a6'); gg.addColorStop(1, '#0a3a4a'); g.fillStyle = gg; g.fill();
+    g.save(); g.translate(x0 + 410, y0 + 260); g.rotate(-0.12); rr(g, -270, -80, 540, 160, 20); g.fillStyle = '#FFD43B'; g.fill(); big(g, 'ANUNCIO', 0, 48, 124, '#111'); g.restore();
+    g.save(); g.translate(x0 + 410, y0 + 260); g.rotate(-0.42); g.fillStyle = '#ff3b3b'; g.shadowColor = '#ff3b3b'; g.shadowBlur = 40; g.fillRect(-460, -20, 920, 40); g.restore();
+    g.fillStyle = '#16181f'; g.beginPath(); g.moveTo(x0 + 340, y0 + 520); g.lineTo(x0 + 480, y0 + 520); g.lineTo(x0 + 530, y0 + 580); g.lineTo(x0 + 290, y0 + 580); g.fill();
+  },
+};
+
+// ---------- plató ----------
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: 0x0a0c12, roughness: .22, metalness: .75 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+// pantalla
+const led = new THREE.Mesh(new THREE.PlaneGeometry(12.8, 7.2), new THREE.MeshStandardMaterial({ map: ledTexture(), emissiveMap: null, emissive: 0xffffff, emissiveIntensity: 0, roughness: .6 }));
+led.material.emissiveMap = led.material.map; led.material.emissiveIntensity = 0.55; led.material.color.set(0x000000);
+led.position.set(0, 5.0, -5.2); scene.add(led);
+const frame = new THREE.Mesh(new RoundedBoxGeometry(13.2, 7.6, .3, 4, .12), new THREE.MeshStandardMaterial({ color: 0x0c0e14, roughness: .4, metalness: .6 }));
+frame.position.set(0, 5.0, -5.38); scene.add(frame);
+// columnas de luz
+for (const x of [-7.4, 7.4]) for (const dz of [0, 1.6]) {
+  const col = new THREE.Mesh(new THREE.BoxGeometry(.16, 9, .16), new THREE.MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 2.2 }));
+  col.position.set(x + (x < 0 ? dz : -dz) * .9, 4.5, -4.6 + dz); scene.add(col);
+}
+// suelo con líneas de luz
+for (let i = -3; i <= 3; i++) {
+  const ln = new THREE.Mesh(new THREE.BoxGeometry(.04, .01, 16), new THREE.MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: .7 }));
+  ln.position.set(i * 2.2, .006, 0); scene.add(ln);
+}
+
+// ---------- mesa ----------
+function textTex(txt, w, h, size, col, bg) { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, w, h); g.font = `900 ${size}px Sans`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = col; g.fillText(txt, w / 2, h / 2 + 4); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
+const desk = new THREE.Mesh(new RoundedBoxGeometry(6.2, 1.25, 1.6, 6, .18), new THREE.MeshPhysicalMaterial({ color: 0x10131b, roughness: .25, metalness: .4, clearcoat: 1, clearcoatRoughness: .1 }));
+desk.position.set(0, .63, 1.2); desk.castShadow = desk.receiveShadow = true; scene.add(desk);
+const top = new THREE.Mesh(new RoundedBoxGeometry(6.5, .14, 1.9, 4, .06), new THREE.MeshPhysicalMaterial({ color: 0xf2f2f2, roughness: .15, clearcoat: 1 }));
+top.position.set(0, 1.3, 1.2); top.castShadow = true; scene.add(top);
+const strip = new THREE.Mesh(new THREE.BoxGeometry(6.1, .06, .02), new THREE.MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 3 }));
+strip.position.set(0, 1.12, 2.01); scene.add(strip);
+const deskLogo = new THREE.Mesh(new THREE.PlaneGeometry(3.6, .55), new THREE.MeshStandardMaterial({ map: textTex('TACTIA · NOTICIAS IA', 1440, 220, 120, '#ffffff', '#10131b'), emissive: 0xffffff, emissiveIntensity: .35 }));
+deskLogo.material.emissiveMap = deskLogo.material.map; deskLogo.position.set(0, .62, 2.012); scene.add(deskLogo);
+
+// ---------- robot presentador ----------
+const white = new THREE.MeshPhysicalMaterial({ color: 0xf3f1ee, roughness: .28, metalness: .05, clearcoat: 1, clearcoatRoughness: .12 });
+const dark = new THREE.MeshPhysicalMaterial({ color: 0x0b0d14, roughness: .1, metalness: .3, clearcoat: 1 });
+const glowM = (c, i = 3) => new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: i });
+const robot = new THREE.Group(); robot.position.set(1.25, 0, .15); robot.rotation.y = -0.26; robot.scale.setScalar(.92); scene.add(robot);
+const torso = new THREE.Mesh(new RoundedBoxGeometry(1.7, 1.55, 1.05, 6, .32), white); torso.position.y = 2.05; torso.castShadow = true; robot.add(torso);
+const chest = new THREE.Mesh(new RoundedBoxGeometry(.9, .5, .1, 4, .08), dark); chest.position.set(0, 2.2, .53); robot.add(chest);
+const chestTxt = new THREE.Mesh(new THREE.PlaneGeometry(.78, .38), new THREE.MeshStandardMaterial({ map: textTex('IA', 400, 200, 150, '#5ff3e6', '#0b0d14'), emissive: 0xffffff, emissiveIntensity: 1.2 }));
+chestTxt.material.emissiveMap = chestTxt.material.map; chestTxt.position.set(0, 2.2, .585); robot.add(chestTxt);
+const neck = new THREE.Mesh(new THREE.CylinderGeometry(.22, .26, .25, 24), dark); neck.position.y = 2.92; robot.add(neck);
+const headG = new THREE.Group(); headG.position.set(0, 3.62, 0); headG.rotation.set(-.05, .12, .05); robot.add(headG);
+const head = new THREE.Mesh(new RoundedBoxGeometry(1.75, 1.3, 1.25, 8, .4), white); head.castShadow = true; headG.add(head);
+const visor = new THREE.Mesh(new RoundedBoxGeometry(1.42, .78, .2, 6, .2), dark); visor.position.set(0, .05, .56); headG.add(visor);
+for (const x of [-.34, .34]) { const eye = new THREE.Mesh(new THREE.CapsuleGeometry(.1, .2, 8, 16), glowM(0x5ff3e6, 4)); eye.position.set(x, .1, .67); headG.add(eye); }
+const mouth = new THREE.Mesh(new THREE.TorusGeometry(.16, .035, 12, 32, Math.PI), glowM(0x5ff3e6, 3)); mouth.rotation.z = Math.PI; mouth.position.set(0, -.15, .67); headG.add(mouth);
+for (const s of [-1, 1]) {
+  const ear = new THREE.Mesh(new THREE.CylinderGeometry(.22, .22, .2, 32), glowM(0xff5a5f, 1.2)); ear.rotation.z = Math.PI / 2; ear.position.set(s * .95, 0, 0); headG.add(ear);
+  const ant = new THREE.Mesh(new THREE.CylinderGeometry(.03, .03, .55, 12), dark); ant.position.set(s * .45, .9, 0); ant.rotation.z = -s * .25; headG.add(ant);
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(.09, 24, 24), glowM(0xF4C542, 5)); tip.position.set(s * .52, 1.18, 0); headG.add(tip);
+}
+// brazo con micrófono
+const shoulderR = new THREE.Group(); shoulderR.position.set(.95, 2.5, .1); shoulderR.rotation.set(-1.05, .15, .55); robot.add(shoulderR);
+const upper = new THREE.Mesh(new THREE.CapsuleGeometry(.2, .75, 8, 16), white); upper.position.y = -.5; upper.castShadow = true; shoulderR.add(upper);
+const elbow = new THREE.Group(); elbow.position.y = -1.0; elbow.rotation.set(-1.25, 0, -.35); shoulderR.add(elbow);
+const fore = new THREE.Mesh(new THREE.CapsuleGeometry(.18, .6, 8, 16), white); fore.position.y = -.42; elbow.add(fore);
+const hand = new THREE.Mesh(new THREE.SphereGeometry(.24, 32, 32), dark); hand.position.y = -.85; elbow.add(hand);
+const mic = new THREE.Group(); mic.position.set(0, -.86, 0); mic.rotation.set(Math.PI, 0, 0); elbow.add(mic);
+const handle = new THREE.Mesh(new THREE.CylinderGeometry(.07, .09, .9, 24), new THREE.MeshStandardMaterial({ color: 0x15171d, roughness: .3, metalness: .7 })); handle.position.y = .25; mic.add(handle);
+const ball = new THREE.Mesh(new THREE.SphereGeometry(.2, 32, 32), new THREE.MeshStandardMaterial({ color: 0x9aa0aa, roughness: .45, metalness: .9 })); ball.position.y = .78; mic.add(ball);
+const flag = new THREE.Mesh(new THREE.BoxGeometry(.42, .3, .42), [0, 1, 2, 3, 4, 5].map(i => i === 2 || i === 3 ? new THREE.MeshStandardMaterial({ color: accent }) : new THREE.MeshStandardMaterial({ map: textTex('IA', 256, 200, 140, '#ffffff', '#' + accent.getHexString()) })));
+flag.position.y = .5; mic.add(flag);
+const shoulderL = new THREE.Group(); shoulderL.position.set(-.95, 2.5, .1); shoulderL.rotation.set(-.35, 0, -.25); robot.add(shoulderL);
+const upperL = new THREE.Mesh(new THREE.CapsuleGeometry(.2, .75, 8, 16), white); upperL.position.y = -.5; shoulderL.add(upperL);
+const handL = new THREE.Mesh(new THREE.SphereGeometry(.24, 32, 32), dark); handL.position.y = -1.1; shoulderL.add(handL);
+
+// ---------- cámara de televisión en primer plano ----------
+const camRig = new THREE.Group(); camRig.position.set(-2.55, -0.35, 9.2); camRig.rotation.y = -0.35; scene.add(camRig);
+const metal = new THREE.MeshStandardMaterial({ color: 0x1a1d24, roughness: .35, metalness: .8 });
+const bodyC = new THREE.Mesh(new RoundedBoxGeometry(1.1, .95, 1.9, 4, .08), metal); bodyC.position.set(0, 3.0, 0); camRig.add(bodyC);
+const lens = new THREE.Mesh(new THREE.CylinderGeometry(.36, .42, .9, 32), metal); lens.rotation.x = Math.PI / 2; lens.position.set(0, 3.0, -1.35); camRig.add(lens);
+const glass = new THREE.Mesh(new THREE.CircleGeometry(.33, 32), new THREE.MeshPhysicalMaterial({ color: 0x0a1630, roughness: .05, metalness: 1, clearcoat: 1 })); glass.position.set(0, 3.0, -1.81); glass.rotation.y = Math.PI; camRig.add(glass);
+const hood = new THREE.Mesh(new THREE.BoxGeometry(.7, .32, .5), metal); hood.position.set(0, 3.62, .2); camRig.add(hood);
+const tally = new THREE.Mesh(new THREE.SphereGeometry(.07, 16, 16), glowM(0xff2a2a, 6)); tally.position.set(.3, 3.55, -.85); camRig.add(tally);
+const tallyTxt = new THREE.Mesh(new THREE.PlaneGeometry(.9, .2), new THREE.MeshStandardMaterial({ map: textTex('● REC', 400, 90, 70, '#ff4040', '#1a1d24'), emissive: 0xffffff, emissiveIntensity: .8 }));
+tallyTxt.material.emissiveMap = tallyTxt.material.map; tallyTxt.position.set(.56, 3.0, .2); tallyTxt.rotation.y = Math.PI / 2; camRig.add(tallyTxt);
+const pole = new THREE.Mesh(new THREE.CylinderGeometry(.09, .09, 2.5, 16), metal); pole.position.set(0, 1.3, .2); camRig.add(pole);
+for (let i = 0; i < 3; i++) { const leg = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, 1.5, 12), metal); const a = i * 2.1; leg.position.set(Math.cos(a) * .5, .55, .2 + Math.sin(a) * .5); leg.rotation.set(Math.sin(a) * .7, 0, -Math.cos(a) * .7); camRig.add(leg); }
+
+// ---------- luces ----------
+scene.add(new THREE.AmbientLight(0xffffff, .03));
+const key = new THREE.SpotLight(0xfff1dc, 95, 30, .5, .55, 1.6); key.position.set(-4.5, 8, 7); key.target.position.set(0, 2.6, 0); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); scene.add(key, key.target);
+const fill = new THREE.SpotLight(0xbfd6ff, 22, 30, .7, .6, 1.6); fill.position.set(5, 4, 7); fill.target.position.set(0, 2.5, 0); scene.add(fill, fill.target);
+const rim1 = new THREE.PointLight(accent, 30, 12, 1.6); rim1.position.set(-3, 4.5, -2); scene.add(rim1);
+const rim2 = new THREE.PointLight(0xF4C542, 18, 12, 1.6); rim2.position.set(3.2, 4.2, -2); scene.add(rim2);
+const ledLight = new THREE.RectAreaLight ? null : null;
+
+// ---------- render ----------
+const comp = new EffectComposer(renderer);
+comp.addPass(new RenderPass(scene, cam));
+comp.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), .38, .5, .92));
+comp.addPass(new OutputPass());
+comp.render();
+window.__done = true;
+</script></body></html>
