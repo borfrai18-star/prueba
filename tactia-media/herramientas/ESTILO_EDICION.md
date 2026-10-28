@@ -52,11 +52,12 @@ Orden de trabajo: cortes → plan → animar primero la intro → hoja con todas
 
 **6. Cortes.** Transcripción palabra a palabra y quitar cada silencio y cada toma fallida, usando el guion como referencia. Mantener nuestra regla de sonido sin cortes bruscos (ver más abajo).
 
-**7. Sonido (pendiente del OK de Borja: de momento solo su voz y el golpe de entrada).** Cómo lo hace Joseph:
+**7. Sonido (28 oct, Borja: SÍ a efectos suaves en las animaciones; NO a la música de momento).** Cómo lo hace Joseph y cómo lo hacemos:
 - El sonido solo subraya lo que se ve: si no pasa nada en pantalla, no suena nada.
 - Tres familias: «fiuuu» para lo que se mueve (deslizar, zoom, cambio de escena); texturas para lo que aparece sin moverse (pop al salir un texto, clic de interfaz, tecleo al escribir); subidas y golpes para crear expectación (unos 5 s después del gancho, al entrar en el cuerpo del vídeo, y al cambiar de idea o de parte).
 - Nunca alto y nunca por encima de la voz; un solo momento fuerte por escena; el pico del «fiuuu» en el fotograma más rápido del movimiento.
-- Música solo debajo de él hablando, a unos −20 dB, nunca debajo de las animaciones.
+- Música: Borja dijo que no de momento. (Joseph la pone solo debajo de él hablando, a unos −20 dB, nunca debajo de las animaciones.)
+- Efectos propios (sintetizados por nosotros), nunca por encima de la voz.
 
 **8. Estructura de guion que se repite en los virales** (Mario): gancho → «La realidad es esta…» → un ejemplo concreto → «Y aquí viene lo importante…» → cierre.
 
