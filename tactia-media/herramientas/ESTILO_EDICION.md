@@ -29,6 +29,43 @@ Para conseguirlo, Borja tiene que grabar por cada vídeo: la toma principal y en
 - Pantallas de palabras blanco / verde azulado de 0,5-2 s solo para frases cortas («de manera gratuita», «¿Cómo copiarlo?»).
 - **Golpe de sonido de entrada (aprobado el 22 oct):** «fiuuu» + golpe suave (efecto propio, `assets/riser.wav`) y zoom al 112 % a los 0,2 s que vuelve al 100 % en 0,4 s. Solo en el primer segundo; después, solo su voz. En `gallo.py` va activado por defecto (`e.intro_sfx = False` para quitarlo).
 
+## Lecciones de los 6 vídeos de referencia (28 oct 2026)
+Borja mandó 6 vídeos para aprender a editar bien: 4 del editor Joseph (@josephvideoediting: cómo enseña a Claude a editar Reels y vídeos largos, diseño de sonido y su marca personal) y 2 de Mario (@mario.kaizen: sistema de Claude Code para hacer Reels en serie). Solo se usa lo que aprendemos; nunca su material.
+
+**1. Planificar antes de animar (lo más importante).** Antes de tocar nada, una tabla con cada frase del guion y qué tipo de escena lleva:
+- **Solo subtítulos**: Borja a cámara con texto.
+- **Subtítulos + interfaz**: una tarjeta o pantallita en el tercio de abajo; el fondo detrás se oscurece y se desenfoca un poco para que se lea.
+- **Media pantalla**: la animación arriba y Borja abajo, o al revés.
+- **Pantalla completa**: la animación ocupa todo (las partes leídas siempre van así).
+Orden de trabajo: cortes → plan → animar primero la intro → hoja con todas las escenas para revisar → resto del vídeo → sonido. Confirmar el plan con Borja si el vídeo es nuevo.
+
+**2. Subtítulos.** En el tercio de abajo y centrados (salvo diseños especiales). Sans en blanco cálido (#F3F3F3, no blanco puro) con sombra muy suave; la palabra especial en cursiva serif del color de acento, con un brillo ligero. Entran palabra a palabra: cada palabra sube un poco desde abajo, con fundido y un desenfoque muy leve; la frase entera tarda 1,5 s como mucho. Texto más pequeño de lo normal; solo se agranda lo que tiene que llamar la atención.
+
+**3. Los tres errores de principiante:**
+- Todo demasiado grande → hacer cada elemento un 25 % más pequeño.
+- Efectos por todas partes → guardarlos para lo que de verdad tiene que llamar la atención. Menos es más.
+- Colores chillones (negro puro, blanco puro, rojo intenso) → colores más apagados, que se ven más profesionales.
+
+**4. Gancho.** Pensar «¿qué es lo que hace que quieran ver el vídeo?» y enseñar eso en pantalla: la palabra del miedo, el deseo o el número («Gratis», «0 €», «Reseña de 1 estrella»), resaltada en la cursiva de acento.
+
+**5. Composición.** Cada escena tiene un solo foco (Borja, el texto o el objeto) colocado en la zona principal, y pocos elementos de apoyo alrededor. Fondos que funcionan: blanco liso; blanco con sombra proyectada y una rejilla suave; amarillo con sombra y rejilla. Escenas con Borja: él en el centro con el gráfico apoyándole, o él a un lado y el gráfico al otro.
+
+**6. Cortes.** Transcripción palabra a palabra y quitar cada silencio y cada toma fallida, usando el guion como referencia. Mantener nuestra regla de sonido sin cortes bruscos (ver más abajo).
+
+**7. Sonido (pendiente del OK de Borja: de momento solo su voz y el golpe de entrada).** Cómo lo hace Joseph:
+- El sonido solo subraya lo que se ve: si no pasa nada en pantalla, no suena nada.
+- Tres familias: «fiuuu» para lo que se mueve (deslizar, zoom, cambio de escena); texturas para lo que aparece sin moverse (pop al salir un texto, clic de interfaz, tecleo al escribir); subidas y golpes para crear expectación (unos 5 s después del gancho, al entrar en el cuerpo del vídeo, y al cambiar de idea o de parte).
+- Nunca alto y nunca por encima de la voz; un solo momento fuerte por escena; el pico del «fiuuu» en el fotograma más rápido del movimiento.
+- Música solo debajo de él hablando, a unos −20 dB, nunca debajo de las animaciones.
+
+**8. Estructura de guion que se repite en los virales** (Mario): gancho → «La realidad es esta…» → un ejemplo concreto → «Y aquí viene lo importante…» → cierre.
+
+**9. Estilo tipo pizarra** (Mario): fondo blanco con rejilla, tarjetas de colores pastel con títulos cortos («LA SKILL», «GRATIS», «3 PARTES»), un círculo amarillo a mano alrededor de la tarjeta clave y Borja en una tarjeta redondeada en una esquina. Sirve para explicar pasos o listas. En vídeos largos, carteles grandes de capítulo («PARTE 1»).
+
+**10. Qué formatos traen clientes** (Joseph, 120 publicaciones de 12 editores): enseñar el trabajo terminado, recursos y tutoriales, historia de cliente, opinión con animación, proceso → resultado, antes y después. Para Tactia: herramientas y tutoriales (nuestros guiones), antes y después, y proceso → resultado.
+
+**No lo hacemos:** avatares o voces de IA (HeyGen, ElevenLabs) en lugar de Borja, copiar vídeos de otros creadores, ni vídeos de banco (Pexels) sin preguntar a Borja.
+
 ## Regla fija (17 oct, Borja)
 - **Borja solo sale en pantalla cuando mira a cámara.** Todo lo que viene de las grabaciones leídas («Guion N – voz») va SIEMPRE tapado con pantallas completas (palabra a palabra en blanco / verde azulado, o gráficos del paso). Nunca se le ve leyendo.
 - También dentro de las tomas a cámara: cada momento en que no mira al objetivo (detector de mirada `gaze.py` + revisión a ojo, `spec_util.away`) se tapa igual.
