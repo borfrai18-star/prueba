@@ -30,14 +30,13 @@ while i < n:
         i += 1
 out = []
 for a, b in groups:
-    while a < b and rms[a] > -38: a += 1
-    while b > a and rms[b] > -38: b -= 1
-    if (b - a + 1) * 0.01 < 0.14: continue
-    if rms[a:b + 1].mean() > -39: continue
+    while a < b and rms[a] > -42: a += 1
+    while b > a and rms[b] > -42: b -= 1
+    if (b - a + 1) * 0.01 < 0.25: continue
+    if rms[a:b + 1].mean() > -44: continue
     # extiende a los lados mientras siga flojo (no se mete en la voz)
-    while a > 0 and rms[a - 1] < -40 and vo[a - 1] < 0.55: a -= 1
-    while b + 1 < n and rms[b + 1] < -40 and vo[b + 1] < 0.55: b += 1
-    t0, t1 = a * 0.01, b * 0.01 + 0.02
+    t0, t1 = a * 0.01 + 0.06, b * 0.01 - 0.04
+    if t1 - t0 < 0.15: continue
     if out and t0 - out[-1][1] < 0.05: out[-1][1] = t1
     else: out.append([round(t0, 3), round(t1, 3)])
 # huecos entre frases de la transcripción (ahí no hay voz): se silencian enteros
@@ -46,10 +45,10 @@ if len(sys.argv) > 4:
     ch = [tuple(map(float, re.findall(r"[\d.]+", l)[:2])) for l in open(sys.argv[4]) if l.strip()]
     for (a0, b0), (a1, b1) in zip(ch, ch[1:]):
         if a1 - b0 > 0.12:
-            out.append([round(b0 + 0.04, 3), round(a1 - 0.03, 3)])
+            out.append([round(b0 + 0.12, 3), round(a1 - 0.10, 3)]) if a1 - b0 > 0.3 else None
     out.sort()
 g = np.ones(len(x), np.float32)
-fade = int(0.015 * sr); low = 10 ** (-40 / 20)
+fade = int(0.04 * sr); low = 10 ** (-28 / 20)
 for t0, t1 in out:
     a, b = int(t0 * sr), int(t1 * sr)
     g[a:b] = np.minimum(g[a:b], low)
