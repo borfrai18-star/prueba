@@ -67,6 +67,9 @@ Orden de trabajo: cortes → plan → animar primero la intro → hoja con todas
 
 **No lo hacemos:** avatares o voces de IA (HeyGen, ElevenLabs) en lugar de Borja, copiar vídeos de otros creadores, ni vídeos de banco (Pexels) sin preguntar a Borja.
 
+## Respiraciones fuera (29 oct, Borja)
+No se tiene que oír ninguna respiración. `media/breath.py` baja 40 dB los huecos entre frases y los tramos flojos con aire dentro de las frases (con fundidos cortos, sin tocar las palabras); `gallo.py` usa ese audio limpio (`audio=` en la fuente). Comprobar después pasando el detector sobre `voz.wav`.
+
 ## Regla fija (17 oct, Borja)
 - **Borja solo sale en pantalla cuando mira a cámara.** Todo lo que viene de las grabaciones leídas («Guion N – voz») va SIEMPRE tapado con pantallas completas (palabra a palabra en blanco / verde azulado, o gráficos del paso). Nunca se le ve leyendo.
 - También dentro de las tomas a cámara: cada momento en que no mira al objetivo (detector de mirada `gaze.py` + revisión a ojo, `spec_util.away`) se tapa igual.
