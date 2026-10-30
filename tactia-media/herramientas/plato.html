@@ -74,6 +74,13 @@ function big(g, txt, x, y, size, color, align = 'center', font = '900') { g.font
 function serif(g, txt, x, y, size, color, align = 'center') { g.font = `italic 400 ${size}px Serif`; g.textAlign = align; g.fillStyle = color; g.fillText(txt, x, y); }
 function rr(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); }
 const SCREENS = {
+  datos(g) {
+    big(g, '31%', 760, 520, 360, '#ffffff');
+    big(g, 'DE LAS PYMES', 760, 640, 78, '#9fe7ff', 'center', '800'); big(g, 'YA USA IA', 760, 730, 78, '#9fe7ff', 'center', '800');
+    // barra: el uso número 1 es el marketing
+    rr(g, 1180, 300, 520, 300, 34); g.fillStyle = 'rgba(255,255,255,.10)'; g.fill(); g.lineWidth = 6; g.strokeStyle = '#F4C542'; g.stroke();
+    big(g, 'USO Nº 1', 1440, 380, 56, '#F4C542', 'center', '800'); big(g, 'MARKETING', 1440, 470, 84, '#fff'); big(g, '47,8%', 1440, 560, 78, '#F4C542');
+  },
   texto(g) { big(g, P.l1 || '', 1024, 520, 260, '#ffffff'); serif(g, P.l2 || '', 1024, 760, 200, '#F4C542'); },
   gemini(g) {
     const grd = g.createLinearGradient(400, 0, 1650, 0); grd.addColorStop(0, '#7ab8ff'); grd.addColorStop(.5, '#c38bff'); grd.addColorStop(1, '#ff9ad5');
